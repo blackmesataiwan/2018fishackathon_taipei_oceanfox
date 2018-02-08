@@ -1,0 +1,48 @@
+{
+    "result": {
+        "iotapplication": {
+            "things": [
+                {
+                    "thingattributes": {},
+                    "description": "",
+                    "thingId": "e80a62e5-fe0a-4ae5-98fb-b24a7403b176",
+                    "thingname": "sensor",
+                    "thingtypeattributes": null,
+                    "type": "Custom",
+                    "resources": [
+                        {
+                            "default_value": "",
+                            "description": "",
+                            "datatype": "String",
+                            "resourceid": "datain",
+                            "old_resourcename": "datain",
+                            "maxvalue": "",
+                            "minvalue": "",
+                            "old_resourcetype_id": "586dc63a5a6b6800065c0228",
+                            "resoucetypeqiotid": "qiot.custom.string",
+                            "old_resourceObjectid": "5a7aba8f9c31dc002e1ec618",
+                            "old_resourceid": "datain",
+                            "resourcename": "datain",
+                            "unit": "°C"
+                        }
+                    ]
+                }
+            ],
+            "rulesdata": {
+                "node_model": {
+                    "freeboardDesc": "",
+                    "freeboardId": "9d9b593a08a511e8bf4425f0cf292a6b",
+                    "noderedId": "9d9b0b1c08a511e89545095ffe70ae02",
+                    "version": 1,
+                    "ruleName": "Rule_ocean",
+                    "freeboardName": "Dashboard_ocean",
+                    "ruleDesc": ""
+                },
+                "rules": "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",
+                "dashboard": "H4sIAAAAAAAAA+VXUU/bMBD+K5NfuklZFSdN2+RxTGyTEA9jb1BVbnMNlpK4OA6wof6n/Yb9sp0dh7ZJKIxCNYmn2nf23Xfnz5/TO8KLs0smgUQLlhbgkGuQBRc5iahDWJqKmynEXJFIyRK9y7RMeF6Q6HyCE5aDHt4RxVWKIciJYHOldzvkhsfq0kSR4oZEd8Q1E49EgUN8HK8cMhep9bjGQzc9UxvBM7ESUDbVz6XOlAiRpDDN2BJzFaAUz5NCB0sZgiUxU6wQpZxDcX6hbRdkgoNrlpaAQ9yT6hqb6/KksW61wjp5cSxFdipikBDbRq2cddU/IFuCVCV28Ql1O2TQXb1n/L7x+9s9oN09YGUCjfI7MZlyGtX21it6k/OeWdLTjSlzrtOQP7+PcJbxfFpv/zhwtYXd3luoFxBEKqGKqgEssFXoyW23auAcG0cWIR3RmTvrj4Eu/DE67bJv2hvGIfro3B2zgFIYh8EgcMNgsYCRy8D1cLkufJqzrFVhzItlyn52+6CYS740vIwIGq64UNMa8/YWZvc8XrZjuqkB6WYdpwJ512ze+mDw0Gwe89MCfFpZ7cEquNXBJFyV3FBOX77VpIuMxrPBRSSNkDtpSH3Ds9DwLHwJHmq408r+ABu/azv/pYcSkjJl8gFWXlQFbN9CHMrq0rKcZ0yBLdvU/VQIX/aFkOwN4dO+EGadEB4nxQnDURnvlicrvlafHhaoLQF7LjE6FQllelOK/kFYwBuDPxwOUVjCUbCnsKTmJjcuqDU+SUqOykKJ7N0Z5IWQ78+UxKo/NESloSgNOan2/A96ciLy5CW4U63wzALvNbiTJ8/kDqXBmLqDWR9JxOie1DGH1qROZXwz1GnRRFMjaH72vKqSGPl8Jh/iEYTUg2Gf+j7z9uND/Ro3WnxvfhucmDibp7OZ7TMrLmeCyXgdfNP0wgA70dVnb443ngXuwh0M+/FwyHyiN3zl2H3J5xvf/V0fmTbzlu3g8Nvf17vwV0+azVlNDo64/XDvRGxIXCM2k4Mjbj0XuwDXF90mraeH53VT09qgJ0aFy0z/ufdXfwHLwWUaGBAAAA=="
+            },
+            "description": "",
+            "appname": "ocean"
+        }
+    }
+}

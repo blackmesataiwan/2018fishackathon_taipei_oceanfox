@@ -1,0 +1,1794 @@
+[
+    {
+        "id": "e3e2d25c.fbe1d",
+        "type": "tab",
+        "label": "Get_Sensor",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "8c9c6eea.35851",
+        "type": "tab",
+        "label": "Dump_To_azure_data_API",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "99c5bd70.7a779",
+        "type": "tab",
+        "label": "Dump_To_Azure(暫停使用)",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "2105fe8c.7645c2",
+        "type": "tab",
+        "label": "show map",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "275b6645.e817da",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "61c8adc3.286214",
+        "type": "mongodb",
+        "z": "",
+        "hostname": "127.0.0.1",
+        "port": "47017",
+        "db": "IoT",
+        "name": "IoTDB"
+    },
+    {
+        "id": "40da5881.b9af98",
+        "type": "mongodb2",
+        "z": "",
+        "uri": "mongodb://127.0.0.1:57017/ocean",
+        "name": "ocean",
+        "options": "",
+        "parallelism": "-1"
+    },
+    {
+        "id": "819cc963.74fe38",
+        "type": "mongodb2",
+        "name": ""
+    },
+    {
+        "id": "2ca9c488.aef5ec",
+        "type": "serial-port",
+        "z": "",
+        "serialport": "/dev/ttyUSB0",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": true
+    },
+    {
+        "id": "42373f69.9a36b",
+        "type": "mongodb",
+        "z": "",
+        "hostname": "127.0.0.1",
+        "port": "57017",
+        "db": "ocean",
+        "name": "ocean"
+    },
+    {
+        "id": "7e8898b9.d54068",
+        "type": "mongodb",
+        "z": "",
+        "hostname": "oceanfox.documents.azure.com",
+        "port": "10255",
+        "db": "admin",
+        "name": ""
+    },
+    {
+        "id": "ba8b6f3.6e00a9",
+        "type": "mongodb2",
+        "z": "",
+        "uri": "mongodb://oceanfox:ow4qjjCJnughfo11TzcUeRs5EhgDPTKQl4KnZZEfvVpIqs34S1Y1TKFtJOtQafWfjOcGYaPsx4r7if1dvTtSwQ==@oceanfox.documents.azure.com:10255/ocean_data?ssl=true",
+        "name": "",
+        "options": "",
+        "parallelism": "-1"
+    },
+    {
+        "id": "96bb3049.53e8",
+        "type": "mongodb2",
+        "name": ""
+    },
+    {
+        "id": "210c1ddc.144ce2",
+        "type": "mongodb2",
+        "name": ""
+    },
+    {
+        "id": "4cbacd7b.8936f4",
+        "type": "mqtt-broker",
+        "z": "",
+        "broker": "localhost",
+        "port": "21883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": ""
+    },
+    {
+        "id": "2fec8cb6.aca584",
+        "type": "mqtt-broker",
+        "z": "",
+        "broker": "172.17.28.243",
+        "port": "21883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": ""
+    },
+    {
+        "id": "d5ed143d.bde368",
+        "type": "inject",
+        "z": "275b6645.e817da",
+        "name": "",
+        "topic": "",
+        "payload": "on",
+        "payloadType": "string",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "x": 152,
+        "y": 136,
+        "wires": [
+            [
+                "f73fec78.089c3"
+            ]
+        ]
+    },
+    {
+        "id": "fca6ce2f.8d286",
+        "type": "inject",
+        "z": "275b6645.e817da",
+        "name": "",
+        "topic": "",
+        "payload": "off",
+        "payloadType": "string",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 154,
+        "y": 184,
+        "wires": [
+            [
+                "f73fec78.089c3"
+            ]
+        ]
+    },
+    {
+        "id": "b6d10ee9.751fc",
+        "type": "json",
+        "z": "275b6645.e817da",
+        "name": "",
+        "x": 508,
+        "y": 165,
+        "wires": [
+            [
+                "d4d2a52d.e40d8"
+            ]
+        ]
+    },
+    {
+        "id": "f73fec78.089c3",
+        "type": "scanBeacon",
+        "z": "275b6645.e817da",
+        "name": "",
+        "beacon_uuid": "",
+        "beacon_major": "",
+        "beacon_minor": "",
+        "x": 309,
+        "y": 164,
+        "wires": [
+            [
+                "b6d10ee9.751fc",
+                "d282b83f.7afb08"
+            ]
+        ]
+    },
+    {
+        "id": "6425d7c8.a3b978",
+        "type": "inject",
+        "z": "275b6645.e817da",
+        "name": "",
+        "topic": "",
+        "payload": "on",
+        "payloadType": "string",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "x": 929,
+        "y": 801,
+        "wires": [
+            [
+                "90fe9361.66685"
+            ]
+        ]
+    },
+    {
+        "id": "e1c5991d.43a818",
+        "type": "inject",
+        "z": "275b6645.e817da",
+        "name": "",
+        "topic": "",
+        "payload": "off",
+        "payloadType": "string",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 931,
+        "y": 849,
+        "wires": [
+            [
+                "90fe9361.66685"
+            ]
+        ]
+    },
+    {
+        "id": "90fe9361.66685",
+        "type": "emulateBeacon",
+        "z": "275b6645.e817da",
+        "name": "",
+        "beacon_uuid": "e2c56db5dffb48d2b060d0f5a71096e0",
+        "beacon_major": "44",
+        "beacon_minor": "33",
+        "beacon_power": "-59",
+        "x": 1104,
+        "y": 829,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a5ba2dde.42405",
+        "type": "mongodb out",
+        "z": "275b6645.e817da",
+        "mongodb": "61c8adc3.286214",
+        "name": "beacon_info",
+        "collection": "",
+        "payonly": true,
+        "upsert": true,
+        "multi": false,
+        "operation": "store",
+        "x": 1144,
+        "y": 156,
+        "wires": []
+    },
+    {
+        "id": "12320c9e.819823",
+        "type": "moment",
+        "z": "275b6645.e817da",
+        "name": "",
+        "topic": "",
+        "input": "",
+        "inputType": "date",
+        "inTz": "Etc/UTC",
+        "adjAmount": "8",
+        "adjType": "hours",
+        "adjDir": "add",
+        "format": "",
+        "locale": "zh-tw",
+        "output": "payload.time",
+        "outputType": "msg",
+        "outTz": "Asia/Taipei",
+        "x": 703,
+        "y": 67,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d4d2a52d.e40d8",
+        "type": "function",
+        "z": "275b6645.e817da",
+        "name": "",
+        "func": "msg.collection = msg.payload.uuid;\nmsg.payload.time = new Date();\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 686,
+        "y": 164.5,
+        "wires": [
+            [
+                "1ee238fa.ff63d7"
+            ]
+        ]
+    },
+    {
+        "id": "60449293.0df93c",
+        "type": "debug",
+        "z": "275b6645.e817da",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 1081,
+        "y": 266,
+        "wires": []
+    },
+    {
+        "id": "2804cfe5.cc5de",
+        "type": "mongodb2 in",
+        "z": "275b6645.e817da",
+        "service": "_ext_",
+        "configNode": "40da5881.b9af98",
+        "name": "",
+        "collection": "",
+        "operation": "createIndex",
+        "x": 907,
+        "y": 370,
+        "wires": [
+            [
+                "60449293.0df93c"
+            ]
+        ]
+    },
+    {
+        "id": "a1ac0e63.b1aa",
+        "type": "function",
+        "z": "275b6645.e817da",
+        "name": "convertToCapped",
+        "func": "msg.payload = {};\n//msg.collection = msg.payload.uuid\nmsg.payload = [{\"time\":1},{expireAfterSeconds:10}];\nreturn msg;",
+        "outputs": "1",
+        "noerr": 0,
+        "x": 677,
+        "y": 370,
+        "wires": [
+            [
+                "2804cfe5.cc5de"
+            ]
+        ]
+    },
+    {
+        "id": "c5a38476.31b498",
+        "type": "debug",
+        "z": "275b6645.e817da",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 956,
+        "y": 513,
+        "wires": []
+    },
+    {
+        "id": "1ee238fa.ff63d7",
+        "type": "delay",
+        "z": "275b6645.e817da",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 875,
+        "y": 160,
+        "wires": [
+            [
+                "1f72dd43.a520a3",
+                "a5ba2dde.42405",
+                "a1ac0e63.b1aa"
+            ]
+        ]
+    },
+    {
+        "id": "eca991ab.06de",
+        "type": "mongodb2 in",
+        "z": "275b6645.e817da",
+        "service": "_ext_",
+        "configNode": "40da5881.b9af98",
+        "name": "",
+        "collection": "",
+        "operation": "db",
+        "x": 422,
+        "y": 547,
+        "wires": [
+            [
+                "c5a38476.31b498"
+            ]
+        ]
+    },
+    {
+        "id": "fbe989d1.545e38",
+        "type": "inject",
+        "z": "275b6645.e817da",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 257,
+        "y": 466,
+        "wires": [
+            [
+                "eca991ab.06de"
+            ]
+        ]
+    },
+    {
+        "id": "965cd8b8.1a2cf8",
+        "type": "function",
+        "z": "275b6645.e817da",
+        "name": "convertToCapped",
+        "func": "msg.payload = {};\nmsg.collection = \"e2c56db5dffb48d2b060d0f5a71096e0\"\nreturn msg;",
+        "outputs": "1",
+        "noerr": 0,
+        "x": 460,
+        "y": 476,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "874cd6ae.fdaaf8",
+        "type": "function",
+        "z": "275b6645.e817da",
+        "name": "check_index",
+        "func": "var searchId = msg.payload.name;\n\nif (searchId != \"_id_\"&&searchId != \"time_1\"){\n    return msg;\n}\nelse{\n    return 0;\n}\n//return msg;",
+        "outputs": "1",
+        "noerr": 0,
+        "x": 735,
+        "y": 560,
+        "wires": [
+            [
+                "c5a38476.31b498"
+            ]
+        ]
+    },
+    {
+        "id": "b9e82585.2a0ad8",
+        "type": "switch",
+        "z": "275b6645.e817da",
+        "name": "",
+        "property": "payload.name",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "_id_",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "time_1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 711,
+        "y": 611,
+        "wires": [
+            [
+                "fdc8d1b3.22ec1"
+            ],
+            [
+                "fdc8d1b3.22ec1"
+            ]
+        ]
+    },
+    {
+        "id": "fdc8d1b3.22ec1",
+        "type": "debug",
+        "z": "275b6645.e817da",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 933,
+        "y": 618,
+        "wires": []
+    },
+    {
+        "id": "1f72dd43.a520a3",
+        "type": "debug",
+        "z": "275b6645.e817da",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 1140,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "5576c4e7.d2d76c",
+        "type": "debug",
+        "z": "275b6645.e817da",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 168,
+        "y": 329,
+        "wires": []
+    },
+    {
+        "id": "d282b83f.7afb08",
+        "type": "delay",
+        "z": "275b6645.e817da",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 186,
+        "y": 283,
+        "wires": [
+            [
+                "5576c4e7.d2d76c"
+            ]
+        ]
+    },
+    {
+        "id": "aa5fc06b.a8026",
+        "type": "debug",
+        "z": "275b6645.e817da",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 382.21429443359375,
+        "y": 397.2857551574707,
+        "wires": []
+    },
+    {
+        "id": "a31f465b.930858",
+        "type": "debug",
+        "z": "8c9c6eea.35851",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 501.9999771118164,
+        "y": 388.5714702606201,
+        "wires": []
+    },
+    {
+        "id": "603caaee.e0f194",
+        "type": "serial in",
+        "z": "e3e2d25c.fbe1d",
+        "name": "",
+        "serial": "2ca9c488.aef5ec",
+        "x": 117.00000762939453,
+        "y": 49.99999809265137,
+        "wires": [
+            [
+                "45df7b2a.9cc124",
+                "9743dd5e.91fed"
+            ]
+        ]
+    },
+    {
+        "id": "2e4948b2.1515c8",
+        "type": "debug",
+        "z": "e3e2d25c.fbe1d",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 570.0000610351562,
+        "y": 433.1428527832031,
+        "wires": []
+    },
+    {
+        "id": "e32c1650.e99f98",
+        "type": "mongodb out",
+        "z": "e3e2d25c.fbe1d",
+        "mongodb": "42373f69.9a36b",
+        "name": "",
+        "collection": "Device1",
+        "payonly": true,
+        "upsert": false,
+        "multi": false,
+        "operation": "store",
+        "x": 790.0001220703125,
+        "y": 265.5714683532715,
+        "wires": []
+    },
+    {
+        "id": "23e333e5.9a19ec",
+        "type": "inject",
+        "z": "e3e2d25c.fbe1d",
+        "name": "Trigger",
+        "topic": "",
+        "payload": "W\\n",
+        "payloadType": "str",
+        "repeat": "20",
+        "crontab": "",
+        "once": false,
+        "x": 126.21427917480469,
+        "y": 218.14290046691895,
+        "wires": [
+            [
+                "31486ef0.7c2fe2"
+            ]
+        ]
+    },
+    {
+        "id": "31486ef0.7c2fe2",
+        "type": "serial out",
+        "z": "e3e2d25c.fbe1d",
+        "name": "",
+        "serial": "2ca9c488.aef5ec",
+        "x": 311.2143859863281,
+        "y": 219.42859268188477,
+        "wires": []
+    },
+    {
+        "id": "45df7b2a.9cc124",
+        "type": "csv",
+        "z": "e3e2d25c.fbe1d",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "x": 310.2142791748047,
+        "y": 60.42857360839844,
+        "wires": [
+            [
+                "8dcdef4b.fb174"
+            ]
+        ]
+    },
+    {
+        "id": "8dcdef4b.fb174",
+        "type": "change",
+        "z": "e3e2d25c.fbe1d",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.col1",
+                "pt": "msg",
+                "to": "payload.lat",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.col2",
+                "pt": "msg",
+                "to": "payload.lng",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.col3",
+                "pt": "msg",
+                "to": "payload.temperture",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.col4",
+                "pt": "msg",
+                "to": "payload.color.r",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.col5",
+                "pt": "msg",
+                "to": "payload.color.g",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.col6",
+                "pt": "msg",
+                "to": "payload.color.b",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320.2143325805664,
+        "y": 119.28572273254395,
+        "wires": [
+            [
+                "2e4948b2.1515c8",
+                "bd398cc8.6ac56"
+            ]
+        ]
+    },
+    {
+        "id": "8abcd183.327a7",
+        "type": "worldmap",
+        "z": "2105fe8c.7645c2",
+        "name": "",
+        "lat": "25",
+        "lon": "121",
+        "zoom": "6",
+        "cluster": "",
+        "maxage": "",
+        "x": 497.9998779296875,
+        "y": 290,
+        "wires": []
+    },
+    {
+        "id": "ad39dd12.bdf8",
+        "type": "mongodb in",
+        "z": "2105fe8c.7645c2",
+        "mongodb": "42373f69.9a36b",
+        "name": "",
+        "collection": "Device1",
+        "operation": "find",
+        "x": 318.0000305175781,
+        "y": 84.00009536743164,
+        "wires": [
+            [
+                "487618d2.4e49c8"
+            ]
+        ]
+    },
+    {
+        "id": "504cde61.fd112",
+        "type": "inject",
+        "z": "2105fe8c.7645c2",
+        "name": "Quakes",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 104.00000762939453,
+        "y": 77,
+        "wires": [
+            [
+                "ad39dd12.bdf8"
+            ]
+        ]
+    },
+    {
+        "id": "86ecf4cb.343108",
+        "type": "debug",
+        "z": "2105fe8c.7645c2",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 693.2142333984375,
+        "y": 234.857177734375,
+        "wires": []
+    },
+    {
+        "id": "487618d2.4e49c8",
+        "type": "split",
+        "z": "2105fe8c.7645c2",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 313.2143249511719,
+        "y": 150.14295959472656,
+        "wires": [
+            [
+                "8c4fa00.1d8aa6"
+            ]
+        ]
+    },
+    {
+        "id": "8c4fa00.1d8aa6",
+        "type": "function",
+        "z": "2105fe8c.7645c2",
+        "name": "USGS Quake monitor csv re-parse",
+        "func": "msg.payload.lat = msg.payload.lat;\nmsg.payload.lon = msg.payload.lng;\nmsg.payload.name = \"Device1_\"+msg.payload._id;\nmsg.payload.icon = \"globe\";\nmsg.payload.iconColor = \"orange\";\nmsg.payload.weblink = {name:\"image\", url:\"http://192.168.70.116:1880/image?_id=\" + msg.payload._id};\n\ndelete msg.payload.lng;\ndelete msg.payload.image;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 560.0000305175781,
+        "y": 117.00003051757812,
+        "wires": [
+            [
+                "12b64f5f.4d97e1"
+            ]
+        ]
+    },
+    {
+        "id": "80294cc8.e6df1",
+        "type": "worldmap in",
+        "z": "2105fe8c.7645c2",
+        "name": "",
+        "x": 90.21432495117188,
+        "y": 306.2857971191406,
+        "wires": [
+            [
+                "ddb59a50.1d5e88"
+            ]
+        ]
+    },
+    {
+        "id": "ddb59a50.1d5e88",
+        "type": "change",
+        "z": "2105fe8c.7645c2",
+        "name": "",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 131.2142791748047,
+        "y": 220.57144165039062,
+        "wires": [
+            [
+                "ad39dd12.bdf8"
+            ]
+        ]
+    },
+    {
+        "id": "30532781.1f7a68",
+        "type": "mongodb2 in",
+        "z": "8c9c6eea.35851",
+        "service": "_ext_",
+        "configNode": "ba8b6f3.6e00a9",
+        "name": "Azure DB",
+        "collection": "",
+        "operation": "insertMany",
+        "x": 480.00003814697266,
+        "y": 316.99999809265137,
+        "wires": [
+            [
+                "a31f465b.930858"
+            ]
+        ]
+    },
+    {
+        "id": "59f617d9.dc6df8",
+        "type": "inject",
+        "z": "8c9c6eea.35851",
+        "name": "",
+        "topic": "",
+        "payload": "{\"value\":1}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 170,
+        "y": 237,
+        "wires": [
+            [
+                "de90a101.30043"
+            ]
+        ]
+    },
+    {
+        "id": "84505580.6891a8",
+        "type": "mongodb in",
+        "z": "8c9c6eea.35851",
+        "mongodb": "42373f69.9a36b",
+        "name": "device1",
+        "collection": "",
+        "operation": "find",
+        "x": 459.00003814697266,
+        "y": 205.99999809265137,
+        "wires": [
+            [
+                "301ef942.d0ce36",
+                "3ecb6753.bd0b38"
+            ]
+        ]
+    },
+    {
+        "id": "dd9197b5.1a8fb8",
+        "type": "inject",
+        "z": "8c9c6eea.35851",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 150,
+        "y": 380.571533203125,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "301ef942.d0ce36",
+        "type": "debug",
+        "z": "8c9c6eea.35851",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 710.0000381469727,
+        "y": 208.99999809265137,
+        "wires": []
+    },
+    {
+        "id": "3ecb6753.bd0b38",
+        "type": "change",
+        "z": "8c9c6eea.35851",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[0]",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 492.00003814697266,
+        "y": 265.99999809265137,
+        "wires": [
+            [
+                "30532781.1f7a68"
+            ]
+        ]
+    },
+    {
+        "id": "de90a101.30043",
+        "type": "function",
+        "z": "8c9c6eea.35851",
+        "name": "",
+        "func": "msg.payload = [\n    [\n        {\"value\":1},\n        {\"value\":2}\n        ]\n    ];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 150,
+        "y": 308,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1ccfc376.3ae72d",
+        "type": "function",
+        "z": "8c9c6eea.35851",
+        "name": "add collection",
+        "func": "var collection_temp = msg.payload.device_id;\ndelete msg._msgid;\ndelete msg.topic;\ndelete msg.parts;\ndelete msg.payload;\nmsg.collection = collection_temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 466.00009536743164,
+        "y": 148.99999809265137,
+        "wires": [
+            [
+                "84505580.6891a8",
+                "ff0e2863.9238f8"
+            ]
+        ]
+    },
+    {
+        "id": "6963af73.91ab9",
+        "type": "split",
+        "z": "8c9c6eea.35851",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 440.78579330444336,
+        "y": 105.28573799133301,
+        "wires": [
+            [
+                "1ccfc376.3ae72d"
+            ]
+        ]
+    },
+    {
+        "id": "8a609b82.0e74a8",
+        "type": "mongodb in",
+        "z": "8c9c6eea.35851",
+        "mongodb": "42373f69.9a36b",
+        "name": "get_device_id",
+        "collection": "device_ID",
+        "operation": "find",
+        "x": 464.00006103515625,
+        "y": 51.7142333984375,
+        "wires": [
+            [
+                "6963af73.91ab9"
+            ]
+        ]
+    },
+    {
+        "id": "f0fa34a3.fd0a98",
+        "type": "inject",
+        "z": "8c9c6eea.35851",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 109.00003814697266,
+        "y": 41.285743713378906,
+        "wires": [
+            [
+                "8a609b82.0e74a8"
+            ]
+        ]
+    },
+    {
+        "id": "aebc944.6048d68",
+        "type": "http in",
+        "z": "8c9c6eea.35851",
+        "name": "",
+        "url": "/Upload_to_azure",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 131.0000457763672,
+        "y": 106.28563976287842,
+        "wires": [
+            [
+                "8a609b82.0e74a8"
+            ]
+        ]
+    },
+    {
+        "id": "ff0e2863.9238f8",
+        "type": "debug",
+        "z": "8c9c6eea.35851",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 694.0000381469727,
+        "y": 149.99999809265137,
+        "wires": []
+    },
+    {
+        "id": "c362b76e.717338",
+        "type": "Collections",
+        "z": "99c5bd70.7a779",
+        "name": "Azure Document DB - Collections",
+        "x": 822.0002632141113,
+        "y": 304.4287004470825,
+        "wires": [
+            [
+                "dfbc7557.6a38f8"
+            ]
+        ]
+    },
+    {
+        "id": "3fe7d2ec.495cae",
+        "type": "Documents",
+        "z": "99c5bd70.7a779",
+        "name": "Azure Document DB - Documents",
+        "x": 582.0002098083496,
+        "y": 543.4286651611328,
+        "wires": [
+            [
+                "6f94681e.4e0008"
+            ]
+        ]
+    },
+    {
+        "id": "6f94681e.4e0008",
+        "type": "debug",
+        "z": "99c5bd70.7a779",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "true",
+        "x": 810.785701751709,
+        "y": 545.8570585250854,
+        "wires": []
+    },
+    {
+        "id": "b37cfb0b.870768",
+        "type": "mongodb in",
+        "z": "99c5bd70.7a779",
+        "mongodb": "42373f69.9a36b",
+        "name": "",
+        "collection": "Device1",
+        "operation": "find",
+        "x": 923.0000610351562,
+        "y": 102,
+        "wires": [
+            [
+                "329136c2.40c81a"
+            ]
+        ]
+    },
+    {
+        "id": "be5e8907.f7fce8",
+        "type": "function",
+        "z": "99c5bd70.7a779",
+        "name": "out_put_to_Azure_DB",
+        "func": "msg.payload.id = msg.payload._id.$oid;\ndelete msg.payload._id;\nmsg.payload = {\n    \"dbname\":\"ocean_data\",\n    \"collName\":msg.collection,\n    \"action\":msg.action,\n    \"doc\":msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 551.0000114440918,
+        "y": 488.9999523162842,
+        "wires": [
+            [
+                "3fe7d2ec.495cae"
+            ]
+        ]
+    },
+    {
+        "id": "329136c2.40c81a",
+        "type": "split",
+        "z": "99c5bd70.7a779",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 835.0002021789551,
+        "y": 189.85718154907227,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "85f63e28.77f3d",
+        "type": "function",
+        "z": "99c5bd70.7a779",
+        "name": "add collection",
+        "func": "var collection_temp = msg.payload.device_id;\ndelete msg._msgid;\ndelete msg.topic;\ndelete msg.part;\nmsg.collection = collection_temp;\nmsg.action = \"C\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 543.000057220459,
+        "y": 229.71427536010742,
+        "wires": [
+            [
+                "ba1f550e.a96268",
+                "5e12a58.ee8b25c"
+            ]
+        ]
+    },
+    {
+        "id": "ce405305.99d36",
+        "type": "mongodb in",
+        "z": "99c5bd70.7a779",
+        "mongodb": "42373f69.9a36b",
+        "name": "get_device_id",
+        "collection": "device_ID",
+        "operation": "find",
+        "x": 541.0000228881836,
+        "y": 132.42851066589355,
+        "wires": [
+            [
+                "535ab5f3.1e979c"
+            ]
+        ]
+    },
+    {
+        "id": "535ab5f3.1e979c",
+        "type": "split",
+        "z": "99c5bd70.7a779",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 517.7857551574707,
+        "y": 186.00001525878906,
+        "wires": [
+            [
+                "85f63e28.77f3d"
+            ]
+        ]
+    },
+    {
+        "id": "88191df9.f7a7a",
+        "type": "http request",
+        "z": "99c5bd70.7a779",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "",
+        "tls": "",
+        "x": 532.0000114440918,
+        "y": 331.99996185302734,
+        "wires": [
+            [
+                "5ebf35e5.b8202c"
+            ]
+        ]
+    },
+    {
+        "id": "ba1f550e.a96268",
+        "type": "function",
+        "z": "99c5bd70.7a779",
+        "name": "msg",
+        "func": "msg.url = \"http://10.0.3.1:58081/db/ocean/expArr/\" + msg.collection\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 519.9999961853027,
+        "y": 277.9999942779541,
+        "wires": [
+            [
+                "88191df9.f7a7a"
+            ]
+        ]
+    },
+    {
+        "id": "5ebf35e5.b8202c",
+        "type": "json",
+        "z": "99c5bd70.7a779",
+        "name": "",
+        "pretty": false,
+        "x": 496,
+        "y": 380.71427726745605,
+        "wires": [
+            [
+                "fcc717a2.127658",
+                "7814ebeb.6fb0b4"
+            ]
+        ]
+    },
+    {
+        "id": "7814ebeb.6fb0b4",
+        "type": "split",
+        "z": "99c5bd70.7a779",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "res",
+        "x": 501.99999618530273,
+        "y": 428.7142667770386,
+        "wires": [
+            [
+                "be5e8907.f7fce8",
+                "39ac18c7.03d9b8"
+            ]
+        ]
+    },
+    {
+        "id": "5e12a58.ee8b25c",
+        "type": "function",
+        "z": "99c5bd70.7a779",
+        "name": "Create coll",
+        "func": "msg.payload = {\n    \"dbname\":\"ocean_data\",\n    \"collName\":msg.collection,\n    \"action\":\"C\"\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 755.0000267028809,
+        "y": 229.28564739227295,
+        "wires": [
+            [
+                "c362b76e.717338"
+            ]
+        ]
+    },
+    {
+        "id": "dfbc7557.6a38f8",
+        "type": "debug",
+        "z": "99c5bd70.7a779",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 890.7856941223145,
+        "y": 360.8570499420166,
+        "wires": []
+    },
+    {
+        "id": "6bf5856c.16667c",
+        "type": "http response",
+        "z": "99c5bd70.7a779",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 830.000057220459,
+        "y": 434.5713539123535,
+        "wires": []
+    },
+    {
+        "id": "998c553.d646ea8",
+        "type": "debug",
+        "z": "99c5bd70.7a779",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 671.7856979370117,
+        "y": 165.85703086853027,
+        "wires": []
+    },
+    {
+        "id": "39ac18c7.03d9b8",
+        "type": "join",
+        "z": "99c5bd70.7a779",
+        "name": "",
+        "mode": "auto",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": "false",
+        "timeout": "",
+        "count": "",
+        "x": 682.0000381469727,
+        "y": 432.4284963607788,
+        "wires": [
+            [
+                "6bf5856c.16667c"
+            ]
+        ]
+    },
+    {
+        "id": "fcc717a2.127658",
+        "type": "debug",
+        "z": "99c5bd70.7a779",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 674.7856979370117,
+        "y": 384.9998998641968,
+        "wires": []
+    },
+    {
+        "id": "36319520.0634ba",
+        "type": "inject",
+        "z": "99c5bd70.7a779",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 186,
+        "y": 122.00002098083496,
+        "wires": [
+            [
+                "ce405305.99d36"
+            ]
+        ]
+    },
+    {
+        "id": "1e8b1f54.083021",
+        "type": "http in",
+        "z": "99c5bd70.7a779",
+        "name": "",
+        "url": "/Upload_to_azure",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 208.00000762939453,
+        "y": 186.99991703033447,
+        "wires": [
+            [
+                "ce405305.99d36"
+            ]
+        ]
+    },
+    {
+        "id": "bd398cc8.6ac56",
+        "type": "function",
+        "z": "e3e2d25c.fbe1d",
+        "name": "add time",
+        "func": "msg.payload.time = new Date();\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 499,
+        "y": 54,
+        "wires": [
+            [
+                "c04b0052.3a3cb"
+            ]
+        ]
+    },
+    {
+        "id": "367616e4.caccea",
+        "type": "join",
+        "z": "2105fe8c.7645c2",
+        "name": "",
+        "mode": "auto",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": "false",
+        "timeout": "",
+        "count": "",
+        "x": 478,
+        "y": 234,
+        "wires": [
+            [
+                "8abcd183.327a7",
+                "86ecf4cb.343108"
+            ]
+        ]
+    },
+    {
+        "id": "12b64f5f.4d97e1",
+        "type": "function",
+        "z": "2105fe8c.7645c2",
+        "name": "Change color",
+        "func": "function toHexString(r,g,b) {\n  return (\"00000\" + (r << 16 | g << 8 | b).toString(16)).slice(-6);\n}\n\nmsg.payload.iconColor = \"#\" + toHexString(\n    msg.payload.color.r,\n    msg.payload.color.g,\n    msg.payload.color.b\n    );\n    \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 503,
+        "y": 177,
+        "wires": [
+            [
+                "367616e4.caccea"
+            ]
+        ]
+    },
+    {
+        "id": "67efd1b4.69cee",
+        "type": "usbcamera",
+        "z": "e3e2d25c.fbe1d",
+        "filemode": "0",
+        "filename": "image01.jpg",
+        "filedefpath": "1",
+        "filepath": "",
+        "fileformat": "jpeg",
+        "resolution": "2",
+        "name": "",
+        "x": 687,
+        "y": 162,
+        "wires": [
+            [
+                "9d266c5a.146b4",
+                "6cd1ffe0.5cf2b"
+            ]
+        ]
+    },
+    {
+        "id": "c04b0052.3a3cb",
+        "type": "function",
+        "z": "e3e2d25c.fbe1d",
+        "name": "change",
+        "func": "msg.temp = msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 676,
+        "y": 107,
+        "wires": [
+            [
+                "67efd1b4.69cee"
+            ]
+        ]
+    },
+    {
+        "id": "9d266c5a.146b4",
+        "type": "function",
+        "z": "e3e2d25c.fbe1d",
+        "name": "change",
+        "func": "var image = msg.payload\nmsg.payload = msg.temp;\nmsg.payload.image = image;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 678,
+        "y": 210,
+        "wires": [
+            [
+                "e32c1650.e99f98"
+            ]
+        ]
+    },
+    {
+        "id": "58c2b59b.e69c7c",
+        "type": "inject",
+        "z": "e3e2d25c.fbe1d",
+        "name": "simulation",
+        "topic": "",
+        "payload": "25.09918307346982,121.5160639272048,25,1,1,1",
+        "payloadType": "str",
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "x": 122,
+        "y": 378,
+        "wires": [
+            [
+                "85af71ca.b7743"
+            ]
+        ]
+    },
+    {
+        "id": "4462a915.293898",
+        "type": "file",
+        "z": "e3e2d25c.fbe1d",
+        "name": "",
+        "filename": "",
+        "appendNewline": false,
+        "createDir": true,
+        "overwriteFile": "true",
+        "x": 1015,
+        "y": 161,
+        "wires": []
+    },
+    {
+        "id": "6cd1ffe0.5cf2b",
+        "type": "function",
+        "z": "e3e2d25c.fbe1d",
+        "name": "path",
+        "func": "msg.filename =\"/public/image/\" +\n    msg.temp.time.getFullYear() + \"-\" +\n    msg.temp.time.getMonth() + \"-\" +\n    msg.temp.time.getDate() + \"-\" +\n    msg.temp.time.getHours() + \"-\" +\n    msg.temp.time.getMinutes() + \"-\" +\n    msg.temp.time.getSeconds() +\n    \".jpg\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 856,
+        "y": 166,
+        "wires": [
+            [
+                "4462a915.293898"
+            ]
+        ]
+    },
+    {
+        "id": "8a86f3ca.cf5f4",
+        "type": "http in",
+        "z": "2105fe8c.7645c2",
+        "name": "",
+        "url": "/image",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 146,
+        "y": 479,
+        "wires": [
+            [
+                "62fb67c3.dbe7d8"
+            ]
+        ]
+    },
+    {
+        "id": "f217cc4c.5c54",
+        "type": "mongodb in",
+        "z": "2105fe8c.7645c2",
+        "mongodb": "42373f69.9a36b",
+        "name": "",
+        "collection": "Device1",
+        "operation": "find",
+        "x": 502,
+        "y": 597,
+        "wires": [
+            [
+                "2fca0014.426b2"
+            ]
+        ]
+    },
+    {
+        "id": "19668d02.d54c83",
+        "type": "http response",
+        "z": "2105fe8c.7645c2",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "Content-Transfer-Encoding": "base64"
+        },
+        "x": 842,
+        "y": 744,
+        "wires": []
+    },
+    {
+        "id": "24e67918.83b4f6",
+        "type": "inject",
+        "z": "2105fe8c.7645c2",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 212,
+        "y": 720,
+        "wires": [
+            [
+                "62fb67c3.dbe7d8"
+            ]
+        ]
+    },
+    {
+        "id": "2fca0014.426b2",
+        "type": "change",
+        "z": "2105fe8c.7645c2",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload[0].image",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 781,
+        "y": 596,
+        "wires": [
+            [
+                "9d86cd40.92f44"
+            ]
+        ]
+    },
+    {
+        "id": "9d86cd40.92f44",
+        "type": "function",
+        "z": "2105fe8c.7645c2",
+        "name": "convert to base64",
+        "func": "msg.payload = msg.payload.toString('base64');\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 873,
+        "y": 649,
+        "wires": [
+            [
+                "89ccb418.f6d1a8"
+            ]
+        ]
+    },
+    {
+        "id": "89ccb418.f6d1a8",
+        "type": "template",
+        "z": "2105fe8c.7645c2",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "mustache",
+        "template": "<img src=\"data:image/jpeg;base64,{{payload}}\">",
+        "output": "str",
+        "x": 838,
+        "y": 700,
+        "wires": [
+            [
+                "19668d02.d54c83"
+            ]
+        ]
+    },
+    {
+        "id": "e4497f89.e7f4f",
+        "type": "debug",
+        "z": "2105fe8c.7645c2",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 643,
+        "y": 857,
+        "wires": []
+    },
+    {
+        "id": "62fb67c3.dbe7d8",
+        "type": "function",
+        "z": "2105fe8c.7645c2",
+        "name": "query",
+        "func": "var ObjectId = global.get('mongodb').ObjectID;\nmsg.payload = { _id: ObjectId(msg.payload._id)};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 260,
+        "y": 598,
+        "wires": [
+            [
+                "f217cc4c.5c54"
+            ]
+        ]
+    },
+    {
+        "id": "9743dd5e.91fed",
+        "type": "mqtt out",
+        "z": "e3e2d25c.fbe1d",
+        "name": "QIoT",
+        "topic": "qiot/things/admin/sensor/datain",
+        "qos": "1",
+        "retain": "false",
+        "broker": "2fec8cb6.aca584",
+        "x": 376,
+        "y": 518,
+        "wires": []
+    },
+    {
+        "id": "85af71ca.b7743",
+        "type": "change",
+        "z": "e3e2d25c.fbe1d",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.value",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 224,
+        "y": 490,
+        "wires": [
+            [
+                "9743dd5e.91fed"
+            ]
+        ]
+    },
+    {
+        "id": "72f9b5d8.46038c",
+        "type": "inject",
+        "z": "e3e2d25c.fbe1d",
+        "name": "simulation",
+        "topic": "",
+        "payload": "25.09918307346982,121.5160639272048,25,1,1,1",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 114,
+        "y": 294,
+        "wires": [
+            [
+                "45df7b2a.9cc124"
+            ]
+        ]
+    }
+]

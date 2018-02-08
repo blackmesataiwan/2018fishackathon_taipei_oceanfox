@@ -1,0 +1,872 @@
+[
+    {
+        "id": "6c2063e8.5b9d2c",
+        "type": "tab",
+        "label": "(disable)"
+    },
+    {
+        "id": "716c9374.25899c",
+        "type": "tab",
+        "label": "show map"
+    },
+    {
+        "id": "c0cb79e3.3a6a88",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "b4b47380.f058f8",
+        "type": "mongodb",
+        "z": "",
+        "hostname": "oceanfox.documents.azure.com",
+        "port": "10255",
+        "db": "ocean_data?ssl=true",
+        "name": "azure"
+    },
+    {
+        "id": "a063e6c0.f8cee8",
+        "type": "mongodb",
+        "z": "",
+        "hostname": "127.0.0.1",
+        "port": "57017",
+        "db": "ocean",
+        "name": "ocean"
+    },
+    {
+        "id": "5136e2eb.8207ec",
+        "type": "inject",
+        "z": "6c2063e8.5b9d2c",
+        "name": "Quakes",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "900",
+        "crontab": "",
+        "once": false,
+        "x": 116,
+        "y": 291.9999084472656,
+        "wires": [
+            [
+                "8f94646f.9f8658"
+            ]
+        ]
+    },
+    {
+        "id": "58de09ce.c15e68",
+        "type": "debug",
+        "z": "6c2063e8.5b9d2c",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 991.2142333984375,
+        "y": 540.8570556640625,
+        "wires": []
+    },
+    {
+        "id": "17a821e0.eeef0e",
+        "type": "function",
+        "z": "6c2063e8.5b9d2c",
+        "name": "parse data on map",
+        "func": "msg.payload.lat = msg.payload.lat;\nmsg.payload.lon = msg.payload.lng;\nmsg.payload.name = \"Device1\"+msg.payload.id;\nmsg.payload.icon = \"ship\";\nmsg.payload.iconColor = \"orange\";\n\ndelete msg.payload.lng;\ndelete msg.payload._rid;\ndelete msg.payload._self;\ndelete msg.payload._etag;\ndelete msg.payload._attachments;\ndelete msg.payload._ts;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 664.0000610351562,
+        "y": 489.99993896484375,
+        "wires": [
+            [
+                "4091d761.b67da8"
+            ]
+        ]
+    },
+    {
+        "id": "9ae1f040.4125",
+        "type": "change",
+        "z": "6c2063e8.5b9d2c",
+        "name": "",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 658.2142944335938,
+        "y": 61.571380615234375,
+        "wires": [
+            [
+                "8f94646f.9f8658"
+            ]
+        ]
+    },
+    {
+        "id": "5d2e1e42.f213a",
+        "type": "Documents",
+        "z": "6c2063e8.5b9d2c",
+        "name": "Azure Document DB - Documents",
+        "x": 707,
+        "y": 202,
+        "wires": [
+            [
+                "e82b5c04.e5f37"
+            ]
+        ]
+    },
+    {
+        "id": "8f94646f.9f8658",
+        "type": "function",
+        "z": "6c2063e8.5b9d2c",
+        "name": "out_put_to_Azure_DB",
+        "func": "msg.payload = {\n    \"dbname\":\"ocean_data\",\n    \"collName\":\"Device1\",\n    \"action\":\"Q\",\n    \"query\":\"SELECT * FROM Device1\"\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 668.999755859375,
+        "y": 142.5712890625,
+        "wires": [
+            [
+                "5d2e1e42.f213a"
+            ]
+        ]
+    },
+    {
+        "id": "7888dc67.612e14",
+        "type": "json",
+        "z": "6c2063e8.5b9d2c",
+        "name": "",
+        "x": 625.2142944335938,
+        "y": 380.1429443359375,
+        "wires": [
+            [
+                "a427e5fc.424918"
+            ]
+        ]
+    },
+    {
+        "id": "e82b5c04.e5f37",
+        "type": "function",
+        "z": "6c2063e8.5b9d2c",
+        "name": "change data to msg.payload",
+        "func": "var temp = msg;\nmsg = {};\nmsg.payload = temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 691.2142944335938,
+        "y": 268.857177734375,
+        "wires": [
+            [
+                "8315dc6c.df30b"
+            ]
+        ]
+    },
+    {
+        "id": "8315dc6c.df30b",
+        "type": "change",
+        "z": "6c2063e8.5b9d2c",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "Query successfully ",
+                "fromt": "str",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 675.2142944335938,
+        "y": 324.57147216796875,
+        "wires": [
+            [
+                "7888dc67.612e14"
+            ]
+        ]
+    },
+    {
+        "id": "a427e5fc.424918",
+        "type": "split",
+        "z": "6c2063e8.5b9d2c",
+        "name": "",
+        "splt": "\\n",
+        "x": 625.2142333984375,
+        "y": 434.7143249511719,
+        "wires": [
+            [
+                "17a821e0.eeef0e"
+            ]
+        ]
+    },
+    {
+        "id": "c1f29b3.3140568",
+        "type": "worldmap",
+        "z": "6c2063e8.5b9d2c",
+        "name": "",
+        "lat": "23.05006",
+        "lon": "121.53129",
+        "zoom": "6",
+        "layer": "OSM grey",
+        "cluster": "10",
+        "maxage": "",
+        "x": 633,
+        "y": 617.9998779296875,
+        "wires": []
+    },
+    {
+        "id": "94d95b63.6f7d48",
+        "type": "delay",
+        "z": "6c2063e8.5b9d2c",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 451.21429443359375,
+        "y": 63.00006103515625,
+        "wires": [
+            [
+                "9ae1f040.4125"
+            ]
+        ]
+    },
+    {
+        "id": "2ea72782.1550a8",
+        "type": "worldmap in",
+        "z": "6c2063e8.5b9d2c",
+        "name": "",
+        "x": 84.00001907348633,
+        "y": 112,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8b03bb47.bde558",
+        "type": "debug",
+        "z": "6c2063e8.5b9d2c",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 141.78564453125,
+        "y": 198.7143096923828,
+        "wires": []
+    },
+    {
+        "id": "4384be71.e3897",
+        "type": "switch",
+        "z": "6c2063e8.5b9d2c",
+        "name": "if connect",
+        "property": "payload.action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "connected",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "connected",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 264.78570556640625,
+        "y": 69.71430969238281,
+        "wires": [
+            [
+                "dae894e7.822418",
+                "94d95b63.6f7d48"
+            ],
+            [
+                "8b03bb47.bde558"
+            ]
+        ]
+    },
+    {
+        "id": "dae894e7.822418",
+        "type": "debug",
+        "z": "6c2063e8.5b9d2c",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 271,
+        "y": 166,
+        "wires": []
+    },
+    {
+        "id": "4091d761.b67da8",
+        "type": "function",
+        "z": "6c2063e8.5b9d2c",
+        "name": "Change color",
+        "func": "function toHexString(r,g,b) {\n  return (\"00000\" + (r << 16 | g << 8 | b).toString(16)).slice(-6);\n}\n\nmsg.payload.iconColor = \"#\" + toHexString(\n    msg.payload.color.r,\n    msg.payload.color.g,\n    msg.payload.color.b\n    );\n    \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 658,
+        "y": 547,
+        "wires": [
+            [
+                "58de09ce.c15e68"
+            ]
+        ]
+    },
+    {
+        "id": "4547f551.5bddec",
+        "type": "worldmap",
+        "z": "716c9374.25899c",
+        "name": "",
+        "lat": "25",
+        "lon": "121",
+        "zoom": "6",
+        "cluster": "",
+        "maxage": "",
+        "x": 497.9998779296875,
+        "y": 290,
+        "wires": []
+    },
+    {
+        "id": "d83d6061.05241",
+        "type": "mongodb in",
+        "z": "716c9374.25899c",
+        "mongodb": "b4b47380.f058f8",
+        "name": "",
+        "collection": "Device1",
+        "operation": "find",
+        "x": 318.0000305175781,
+        "y": 84.00009536743164,
+        "wires": [
+            [
+                "f0ce5aec.a8b468"
+            ]
+        ]
+    },
+    {
+        "id": "a22a0f1.7afa4f",
+        "type": "inject",
+        "z": "716c9374.25899c",
+        "name": "test",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 104.00000762939453,
+        "y": 77,
+        "wires": [
+            [
+                "d83d6061.05241"
+            ]
+        ]
+    },
+    {
+        "id": "8470aaad.420778",
+        "type": "debug",
+        "z": "716c9374.25899c",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 693.2142333984375,
+        "y": 234.857177734375,
+        "wires": []
+    },
+    {
+        "id": "f0ce5aec.a8b468",
+        "type": "split",
+        "z": "716c9374.25899c",
+        "name": "",
+        "splt": "\\n",
+        "x": 313.2143249511719,
+        "y": 150.14295959472656,
+        "wires": [
+            [
+                "c700052d.b67058"
+            ]
+        ]
+    },
+    {
+        "id": "c700052d.b67058",
+        "type": "function",
+        "z": "716c9374.25899c",
+        "name": "USGS Quake monitor csv re-parse",
+        "func": "msg.payload.lat = msg.payload.lat;\nmsg.payload.lon = msg.payload.lng;\nmsg.payload.name = \"Device1_\"+msg.payload._id;\nmsg.payload.icon = \"globe\";\nmsg.payload.iconColor = \"orange\";\nmsg.payload.weblink = {name:\"image\", url:\"http://ocean-node-red.azurewebsites.net/image?_id=\" + msg.payload._id};\n\ndelete msg.payload.lng;\ndelete msg.payload.image;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 560.0000305175781,
+        "y": 117.00003051757812,
+        "wires": [
+            [
+                "b4f5f54d.828488"
+            ]
+        ]
+    },
+    {
+        "id": "54acbf05.7f9e8",
+        "type": "worldmap in",
+        "z": "716c9374.25899c",
+        "name": "",
+        "x": 94.21432495117188,
+        "y": 372.2857971191406,
+        "wires": [
+            [
+                "3fd1c6ec.eb8dea"
+            ]
+        ]
+    },
+    {
+        "id": "bb2061e6.58074",
+        "type": "change",
+        "z": "716c9374.25899c",
+        "name": "",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 131.2142791748047,
+        "y": 220.57144165039062,
+        "wires": [
+            [
+                "d83d6061.05241"
+            ]
+        ]
+    },
+    {
+        "id": "6b29a48.cb0ef5c",
+        "type": "join",
+        "z": "716c9374.25899c",
+        "name": "",
+        "mode": "auto",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "timeout": "",
+        "count": "",
+        "x": 478,
+        "y": 234,
+        "wires": [
+            [
+                "4547f551.5bddec",
+                "8470aaad.420778"
+            ]
+        ]
+    },
+    {
+        "id": "b4f5f54d.828488",
+        "type": "function",
+        "z": "716c9374.25899c",
+        "name": "Change color",
+        "func": "function toHexString(r,g,b) {\n  return (\"00000\" + (r << 16 | g << 8 | b).toString(16)).slice(-6);\n}\n\nmsg.payload.iconColor = \"#\" + toHexString(\n    msg.payload.color.r,\n    msg.payload.color.g,\n    msg.payload.color.b\n    );\n    \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 503,
+        "y": 177,
+        "wires": [
+            [
+                "6b29a48.cb0ef5c"
+            ]
+        ]
+    },
+    {
+        "id": "846247a7.a6b1b8",
+        "type": "http in",
+        "z": "716c9374.25899c",
+        "name": "",
+        "url": "/image",
+        "method": "get",
+        "swaggerDoc": "",
+        "x": 274,
+        "y": 532,
+        "wires": [
+            [
+                "5a4d5d69.d45bf4"
+            ]
+        ]
+    },
+    {
+        "id": "10479181.61b92e",
+        "type": "mongodb in",
+        "z": "716c9374.25899c",
+        "mongodb": "b4b47380.f058f8",
+        "name": "",
+        "collection": "Device1",
+        "operation": "find",
+        "x": 560,
+        "y": 652,
+        "wires": [
+            [
+                "8ac9390d.e17718",
+                "1ddd8798.cf2f78"
+            ]
+        ]
+    },
+    {
+        "id": "c9bf2d86.00ff7",
+        "type": "http response",
+        "z": "716c9374.25899c",
+        "name": "",
+        "x": 970,
+        "y": 797,
+        "wires": []
+    },
+    {
+        "id": "a5b5ee5f.c8fdc",
+        "type": "inject",
+        "z": "716c9374.25899c",
+        "name": "test",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 236,
+        "y": 712,
+        "wires": [
+            [
+                "5a4d5d69.d45bf4"
+            ]
+        ]
+    },
+    {
+        "id": "3d87aac4.f7e496",
+        "type": "change",
+        "z": "716c9374.25899c",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload[0].image",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 909,
+        "y": 649,
+        "wires": [
+            [
+                "14d7d34.71f5c2d"
+            ]
+        ]
+    },
+    {
+        "id": "14d7d34.71f5c2d",
+        "type": "function",
+        "z": "716c9374.25899c",
+        "name": "convert to base64",
+        "func": "msg.payload = msg.payload.toString('base64');\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1001,
+        "y": 702,
+        "wires": [
+            [
+                "11a0115b.bfc34f"
+            ]
+        ]
+    },
+    {
+        "id": "11a0115b.bfc34f",
+        "type": "template",
+        "z": "716c9374.25899c",
+        "name": "HTML",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "mustache",
+        "template": "<img src=\"data:image/jpeg;base64,{{payload}}\">",
+        "x": 966,
+        "y": 753,
+        "wires": [
+            [
+                "c9bf2d86.00ff7"
+            ]
+        ]
+    },
+    {
+        "id": "1ddd8798.cf2f78",
+        "type": "debug",
+        "z": "716c9374.25899c",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 840,
+        "y": 561,
+        "wires": []
+    },
+    {
+        "id": "5a4d5d69.d45bf4",
+        "type": "function",
+        "z": "716c9374.25899c",
+        "name": "query",
+        "func": "var ObjectId = global.get('mongodb').ObjectID;\nmsg.payload = { _id: ObjectId(msg.payload._id)};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 388,
+        "y": 651,
+        "wires": [
+            [
+                "10479181.61b92e"
+            ]
+        ]
+    },
+    {
+        "id": "8ac9390d.e17718",
+        "type": "switch",
+        "z": "716c9374.25899c",
+        "name": "",
+        "property": "payload[0]",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "null"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 639,
+        "y": 696,
+        "wires": [
+            [
+                "3d87aac4.f7e496"
+            ],
+            [
+                "7074628d.96ca5c"
+            ]
+        ]
+    },
+    {
+        "id": "7074628d.96ca5c",
+        "type": "template",
+        "z": "716c9374.25899c",
+        "name": "HTML",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "css",
+        "syntax": "mustache",
+        "template": "<h1>No Data</h1>",
+        "x": 807,
+        "y": 705,
+        "wires": [
+            [
+                "c9bf2d86.00ff7"
+            ]
+        ]
+    },
+    {
+        "id": "6cc465c7.76d02c",
+        "type": "catch",
+        "z": "716c9374.25899c",
+        "name": "Query error",
+        "scope": [
+            "5a4d5d69.d45bf4"
+        ],
+        "x": 410,
+        "y": 761,
+        "wires": [
+            [
+                "b3c27f6c.99982"
+            ]
+        ]
+    },
+    {
+        "id": "b3c27f6c.99982",
+        "type": "change",
+        "z": "716c9374.25899c",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "error",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 642,
+        "y": 764,
+        "wires": [
+            [
+                "c9bf2d86.00ff7"
+            ]
+        ]
+    },
+    {
+        "id": "2144b83d.5bf088",
+        "type": "delay",
+        "z": "716c9374.25899c",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 87,
+        "y": 283,
+        "wires": [
+            [
+                "bb2061e6.58074"
+            ]
+        ]
+    },
+    {
+        "id": "3fd1c6ec.eb8dea",
+        "type": "switch",
+        "z": "716c9374.25899c",
+        "name": "if connect",
+        "property": "payload.action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "connected",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "connected",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 95.5714111328125,
+        "y": 330.7142333984375,
+        "wires": [
+            [
+                "2144b83d.5bf088"
+            ],
+            []
+        ]
+    }
+]

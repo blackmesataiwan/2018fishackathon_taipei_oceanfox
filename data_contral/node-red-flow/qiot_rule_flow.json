@@ -1,0 +1,518 @@
+[
+    {
+        "id": "4d495104.291e4",
+        "type": "tab",
+        "label": "Get_Sensor"
+    },
+    {
+        "id": "f930b78e.0fd218",
+        "type": "mongodb",
+        "z": "",
+        "hostname": "127.0.0.1",
+        "port": "47017",
+        "db": "IoT",
+        "name": "IoTDB"
+    },
+    {
+        "id": "fd76477.388b1b8",
+        "type": "mongodb",
+        "z": "",
+        "hostname": "10.0.7.1",
+        "port": "57017",
+        "db": "ocean",
+        "name": "ocean"
+    },
+    {
+        "id": "723cd0c9.e0397",
+        "type": "mongodb",
+        "z": "",
+        "hostname": "oceanfox.documents.azure.com",
+        "port": "10255",
+        "db": "admin",
+        "name": ""
+    },
+    {
+        "id": "485a4810.1be0e8",
+        "type": "mongodb",
+        "z": "",
+        "hostname": "10.0.7.1",
+        "port": "57017",
+        "db": "ocean",
+        "name": "ocean"
+    },
+    {
+        "id": "57dcb287.0d1ddc",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "4f54c3d.6f27d3c",
+        "type": "debug",
+        "z": "4d495104.291e4",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 545.0000610351562,
+        "y": 342.1428527832031,
+        "wires": []
+    },
+    {
+        "id": "ec972c61.3531d",
+        "type": "csv",
+        "z": "4d495104.291e4",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "x": 312.21429443359375,
+        "y": 133.4285888671875,
+        "wires": [
+            [
+                "848b3e63.f9a22"
+            ]
+        ]
+    },
+    {
+        "id": "848b3e63.f9a22",
+        "type": "change",
+        "z": "4d495104.291e4",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.col1",
+                "pt": "msg",
+                "to": "payload.lat",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.col2",
+                "pt": "msg",
+                "to": "payload.lng",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.col3",
+                "pt": "msg",
+                "to": "payload.temperture",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.col4",
+                "pt": "msg",
+                "to": "payload.color.r",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.col5",
+                "pt": "msg",
+                "to": "payload.color.g",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "payload.col6",
+                "pt": "msg",
+                "to": "payload.color.b",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 302.21435546875,
+        "y": 250.28573608398438,
+        "wires": [
+            [
+                "4f54c3d.6f27d3c",
+                "27c615ea.f3612a",
+                "be14aa21.32b3e8",
+                "c5cd209f.36896",
+                "b7158d64.864b1"
+            ]
+        ]
+    },
+    {
+        "id": "58bfd3f8.91d74c",
+        "type": "qiotbroker in",
+        "z": "4d495104.291e4",
+        "name": "",
+        "flow": "4d495104.291e4",
+        "opt_customtopic": false,
+        "customtopic": "",
+        "thing": "8b7de5da-65e3-4439-8eff-cfa487f4eef1",
+        "qtopic": "qiot/things/admin/sensor/datain",
+        "username": "admin",
+        "rules": [
+            {
+                "v": "5a7ad1929c31dc002e63693b",
+                "meta": {
+                    "unit": "°C",
+                    "datatype": "String"
+                },
+                "resid": "datain"
+            }
+        ],
+        "outputs": 1,
+        "key": "r:be608b9f84dd89acf162d0cb9ea5a40d",
+        "x": 94,
+        "y": 39,
+        "wires": [
+            [
+                "db14e3c4.118de"
+            ]
+        ]
+    },
+    {
+        "id": "db14e3c4.118de",
+        "type": "change",
+        "z": "4d495104.291e4",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.value",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 122,
+        "y": 141,
+        "wires": [
+            [
+                "ec972c61.3531d"
+            ]
+        ]
+    },
+    {
+        "id": "f9171b0b.8e1f38",
+        "type": "qiotdashboard datasource out",
+        "z": "4d495104.291e4",
+        "name": "Temperture",
+        "resourcetype": "582ebc5e67ad91000645dec2",
+        "qiot_resource_name": "Temperature",
+        "qiot_id": "qiot.temperature",
+        "datatypes": "Float",
+        "units": "°C",
+        "min_value": -40,
+        "max_value": 125,
+        "metadata": true,
+        "func": "msg.payload = msg.payload.value;\nreturn msg;",
+        "noerr": 0,
+        "x": 956,
+        "y": 338,
+        "wires": []
+    },
+    {
+        "id": "e28e3666.8e9758",
+        "type": "qiotdashboard datasource out",
+        "z": "4d495104.291e4",
+        "name": "lat",
+        "resourcetype": "586dc63a5a6b6800065c0228",
+        "qiot_resource_name": "Custom Sensor(String)",
+        "qiot_id": "qiot.custom.string",
+        "datatypes": "String",
+        "units": "°C",
+        "min_value": null,
+        "max_value": null,
+        "metadata": true,
+        "func": "msg.payload = msg.payload.value;\nreturn msg;",
+        "noerr": 0,
+        "x": 887,
+        "y": 78,
+        "wires": []
+    },
+    {
+        "id": "1158104b.e28a1",
+        "type": "qiotdashboard datasource out",
+        "z": "4d495104.291e4",
+        "name": "lng",
+        "resourcetype": "586dc63a5a6b6800065c0228",
+        "qiot_resource_name": "Custom Sensor(String)",
+        "qiot_id": "qiot.custom.string",
+        "datatypes": "String",
+        "units": "°C",
+        "min_value": null,
+        "max_value": null,
+        "metadata": true,
+        "func": "msg.payload = msg.payload.value;\nreturn msg;",
+        "noerr": 0,
+        "x": 893,
+        "y": 131,
+        "wires": []
+    },
+    {
+        "id": "d7e912e6.133a2",
+        "type": "qiotdashboard datasource out",
+        "z": "4d495104.291e4",
+        "name": "color",
+        "resourcetype": "586dc63a5a6b6800065c0228",
+        "qiot_resource_name": "Custom Sensor(String)",
+        "qiot_id": "qiot.custom.string",
+        "datatypes": "String",
+        "units": "°C",
+        "min_value": null,
+        "max_value": null,
+        "metadata": true,
+        "func": "msg.payload = msg.payload.value;\nreturn msg;",
+        "noerr": 0,
+        "x": 896,
+        "y": 202,
+        "wires": []
+    },
+    {
+        "id": "5ac32a0e.077b44",
+        "type": "function",
+        "z": "4d495104.291e4",
+        "name": "To float",
+        "func": "msg.payload.value = parseFloat(msg.payload.value)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 758,
+        "y": 85,
+        "wires": [
+            [
+                "e28e3666.8e9758"
+            ]
+        ]
+    },
+    {
+        "id": "27c615ea.f3612a",
+        "type": "change",
+        "z": "4d495104.291e4",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.lat",
+                "pt": "msg",
+                "to": "payload.value",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 559,
+        "y": 92,
+        "wires": [
+            [
+                "5ac32a0e.077b44"
+            ]
+        ]
+    },
+    {
+        "id": "be14aa21.32b3e8",
+        "type": "change",
+        "z": "4d495104.291e4",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.lng",
+                "pt": "msg",
+                "to": "payload.value",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 574,
+        "y": 175,
+        "wires": [
+            [
+                "d2d9cf40.9d753"
+            ]
+        ]
+    },
+    {
+        "id": "c5cd209f.36896",
+        "type": "change",
+        "z": "4d495104.291e4",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.color",
+                "pt": "msg",
+                "to": "payload.value",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 581,
+        "y": 220,
+        "wires": [
+            [
+                "d7e912e6.133a2"
+            ]
+        ]
+    },
+    {
+        "id": "b7158d64.864b1",
+        "type": "change",
+        "z": "4d495104.291e4",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.temperture",
+                "pt": "msg",
+                "to": "payload.value",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 266,
+        "wires": [
+            [
+                "a2828eb3.ab69e"
+            ]
+        ]
+    },
+    {
+        "id": "d2d9cf40.9d753",
+        "type": "function",
+        "z": "4d495104.291e4",
+        "name": "To float",
+        "func": "msg.payload.value = parseFloat(msg.payload.value)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 151,
+        "wires": [
+            [
+                "1158104b.e28a1"
+            ]
+        ]
+    },
+    {
+        "id": "a2828eb3.ab69e",
+        "type": "function",
+        "z": "4d495104.291e4",
+        "name": "To float",
+        "func": "msg.payload.value = parseFloat(msg.payload.value)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 839,
+        "y": 277,
+        "wires": [
+            [
+                "f9171b0b.8e1f38"
+            ]
+        ]
+    }
+]
